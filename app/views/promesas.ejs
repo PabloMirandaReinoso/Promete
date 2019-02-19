@@ -1,0 +1,27 @@
+<div id='divPromesas' class='container-fluid nopad'>
+<table id='tabPromesas' class='display'>
+  <thead>
+  <tr>
+     <th>Cuando</th>
+     <th>Como</th>
+     <th>Quien</th>
+  </tr>
+  </thead>
+  <tfoot>
+  <tbody>
+  <%
+  var fecha = new Date();
+  prom.forEach(function(p)
+  {%>
+    <tr onclick="Editar('<%=p._id%>');">
+    <td><%=p.Cuando %>
+    </td>
+    <td><%=p.Como%></td>
+    <td><%=p.Quien%></td>
+    </tr>
+   <%
+   });
+   %>
+   </tbody>
+</table>
+</div>

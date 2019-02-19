@@ -1,0 +1,11 @@
+<script>
+$body = $("body");
+$("#modLoader").remove();
+$body.append('<div id='modLoader' class='modal'></div>');
+
+$(document).on({
+    ajaxStart: function() { $body.addClass("loading");    },
+     ajaxStop: function() { $body.removeClass("loading"); }    
+});
+</script>
+
