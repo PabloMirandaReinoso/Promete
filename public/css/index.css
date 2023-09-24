@@ -1,0 +1,63 @@
+[class*="col-"] 
+{
+padding: 0px 0px 0px 0px;
+margin: 0px 0px 0px 0px;
+}
+
+[class="row"]
+{
+padding: 0px 0px 0px 0px;
+margin: 0px 0px 0px 0px;
+}
+
+
+.headprom
+{
+padding: 0px 0px 0px 0px;
+margin: 0px 0px 0px 0px;
+background-image: url("/img/handshake.jpg");
+background-repeat: no-repeat;
+background-position: right top;
+}
+
+div
+{
+
+background: rgba(153, 204, 255, 0.3);
+border-radius: 2px 2px 2px 2px !important;
+padding: 2px 2px 2px 2px !important;
+margin: 2px 2px 2px 2px !important;
+}
+
+.row
+{
+padding: 2px 2px 2px 2px !important;
+margin: 2px 2px 2px 2px !important;
+}
+
+input
+{
+padding :2px 2px 2px 2px;
+margin: 2px 2px 2px 2px;
+
+
+}
+label
+{
+text-shadow: 1px 0px 0px ;
+border: 0.-px solid black;
+border-radius: 2px;
+border-margin: 0px 0px 0px 0px;
+padding : 2px 5px 2px 5px;
+margin: 2px 2px 2px 2px;
+
+background: rgba(255, 255, 40, 0.3);
+color: white;
+}
+
+th
+{
+
+text-shadow: 1px 0px 0px ;
+
+}
