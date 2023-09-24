@@ -53,6 +53,7 @@ exports.Guardar= function (req)
    prom.Quien  =req.body.Quien;
    prom.Como   =req.body.Como;
    prom.Id     =req.body.Id;
+   prom.Prioridad     =req.body.Prioridad;
    
    dal.Guardar(prom)
    .then(function(doc){resolve(doc)})
