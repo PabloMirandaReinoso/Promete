@@ -1,7 +1,16 @@
-function Default()
+function loadData(url,loader)
 {
-    const [loaded, setLoaded] =  React.useState(false);
-	
+	GetData(url)
+	 .then(
+		   (data)=>
+		   {
+			   console.log(data);
+			   loader(data);
+		   });		   
+}
+
+function Default()
+{	
 	const [next, setNext] =  React.useState({"date":"","total":""});
 	const [today, setToday] =  React.useState({"date":"","total":""});
 	const [prev, setPrev] =  React.useState({"date":"","total":""});
@@ -10,55 +19,34 @@ function Default()
 	const [urgent, setUrgent] =  React.useState([]);
 	const [week, setWeek] =  React.useState([]);
 	
-	React.useEffect(() => {	 
-	 GetData('http://localhost:4000/Activities/Details')
-	 .then(
-		   (data)=>
-		   {
-			   console.log(data);
-			   setDetails(data);
-		   });		   
-	 
-	 GetData('http://localhost:4000/Activities/Urgent')
-	.then(
-		   (data)=>
-		   {
-			   console.log(data);
-			   setUrgent(data);
-		   });	 		   
-	 
-	 GetData('http://localhost:4000/Activities/Week')
-	 .then(
-		   (data)=>
-		   {
-			   console.log(data);
-			   setWeek(data);
-		   });		   
+	const [activityform, setActivityForm] =  React.useState([]);	
+	const [modalstate, setModalState] = React.useState(true);
+    
+	const handleOpen = (id) => 
+	{	
+		console.log ('modal-open');
+		setModalState(true);
+	}
+    
+	const handleClose = () =>
+	{	
+		console.log ('modal-close');
+		setModalState(false);
+	}
 	
-	 GetData('http://localhost:4000/Activities/Next')
-	 .then(
-		   (data)=>
-		   {
-			   console.log(data);
-			   setNext(data);
-		   });		   
-	 
-	 GetData('http://localhost:4000/Activities/Today')
-	 .then(
-		   (data)=>
-		   {
-			   console.log(data);
-			   setToday(data);}		   
-		   );		   
-	 
-	 GetData('http://localhost:4000/Activities/Prev')
-	 .then(
-		   (data)=>
-		   {
-			   console.log(data);
-			   setPrev(data);
-		   });
-	console.log (details,urgent,week,next,today,prev,loaded); 
+	React.useEffect(() => 
+	{	 
+	
+		loadData('http://localhost:4000/Activities/Details',setDetails);
+		loadData('http://localhost:4000/Activities/Urgent',setUrgent);
+		loadData('http://localhost:4000/Activities/Week',setWeek);
+		
+		loadData('http://localhost:4000/Activities/Next',setNext);
+		loadData('http://localhost:4000/Activities/Today',setToday);
+		loadData('http://localhost:4000/Activities/Prev',setPrev);	
+		
+		console.log (details,urgent,week,next,today,prev); 
+	
 	},[]);	
 	
 return(	
@@ -78,16 +66,15 @@ return(
 		
         <div className="row mt-2">
 		<div className="col-lg-12 col-md-12 col-sm-12 col-12">			    
-                <ActivityDetails label={'Hoy'} list={details}/>
-				<MaterialUI.Button variant="contained">Hello world</MaterialUI.Button>
+                <ActivityDetails label={'Hoy'} list={details} open={handleOpen}/>				
             </div>
 			
             <div className="col-lg-6 col-md-6 col-sm-6 col-12 mt-2">			
-                <ActivityDetails label={'Urgentes'} list={urgent}/>
+                <ActivityDetails label={'Urgentes'} list={urgent}open={handleOpen}/>
             </div>            
 			
             <div className="col-lg-6 col-md-6 col-sm-6 col-12 mt-2">
-                <ActivityDetails label={'Semana'} list={week}/>
+                <ActivityDetails label={'Semana'} list={week} open={handleOpen}/>
             </div>
 			
             <div className="col-lg-6 col-md-12 col-sm-12 col-12 mt-2">
@@ -126,7 +113,10 @@ return(
                     </div>
                 </footer>
             </div>
-        </div>
+        </div>		
+		<div className="row">
+		<ActivityForm data={activityform} state={modalstate} close={handleClose}/>
+		</div>
 </div>
 );
 }

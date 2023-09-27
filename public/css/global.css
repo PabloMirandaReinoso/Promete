@@ -1,0 +1,8 @@
+.MUI-Modal {
+  position: absolute;
+  margin-top: 20%;
+  margin-left: 10%;  
+  width: 80%;  
+  background-color : white;
+  border: 2px solid #000;    
+}

@@ -1,4 +1,4 @@
-function ActivityDetails({label,list})
+function ActivityDetails({label,list,activity})
 {  
 return(
 <div className="card ">
@@ -9,7 +9,7 @@ return(
 							{Array.isArray(list) ? 
 								list.map
 								(item => 
-								<li key={item.id}>      
+								<li key={item.id} data-id={item.id}>      
 								<p><b>{item.description}</b></p>
 							    </li>
 							    )
