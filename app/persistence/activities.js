@@ -1,4 +1,4 @@
-var conn =require('../database/promesas.js');
+var conn =require('../database/activities.js');
 
 exports.Guardar=
 function(prom)

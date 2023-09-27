@@ -75,3 +75,28 @@ function (resolve,reject)
 }
 )
 }
+
+
+module.exports.Today = function(P)
+{
+return new Promise
+( 
+function (resolve,reject)
+{
+console.log('db.Today ' + Date.now());
+datastore.find({})
+.then(function(docs)
+ {
+  var T = Array();
+  docs.forEach
+  (function(p){T.push(p);});
+  console.log('db.Today ' + Date.now() );
+  resolve(T);
+ }
+ )
+ .catch(function(err)
+  {console.log(F);reject(T);}
+  );
+ }
+)
+}

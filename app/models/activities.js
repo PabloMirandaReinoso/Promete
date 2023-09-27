@@ -1,5 +1,5 @@
 var dal = require
-('../persistence/promesas.js');
+('../persistence/activities.js');
 
 var eml = require
 ('../services/email.js');
@@ -74,6 +74,24 @@ function(req)
    //p=req.params.Id;
    console.log('mod.Email',1);
    eml.Enviar(p)
+   .then(function(doc){resolve(doc)})
+   .catch(function(err){reject(err)})
+  }
+ )
+}
+
+
+exports.Today =
+function(req)
+{
+ return new Promise
+ (
+ function (resolve,reject)
+  {
+   var p;
+   p=req.params.Id;
+   console.log('mod.Today',p);
+   dal.Today(p)
    .then(function(doc){resolve(doc)})
    .catch(function(err){reject(err)})
   }

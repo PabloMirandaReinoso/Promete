@@ -1,10 +1,10 @@
 var express  = require('express');
 var router   = express.Router();
 var home     = require('../routes/home');
-var prom     = require('../routes/promesas');
+var acti     = require('../routes/activities');
 
  router.use('/',home);
- router.use('/prom',prom);
+ router.use('/activities',acti);
  
 module.exports = router
 
