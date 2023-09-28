@@ -20,24 +20,23 @@ function(req, res, next)
    });
 }
 
-exports.Guardar=
+exports.Save=
 function(req, res, next)
 {
-   console.log('con.Guardar');
-   model.Guardar(req)
+   console.log('con.Save');
+   model.Save(req)
    .then(function(doc)
    {
-    console.log('con.Guardar',doc);
+    console.log('con.Save',doc);
     res.send(doc);
     //resolve(doc)
    })
    .catch(function(err){
-   console.log('Guardar',err);
+   console.log('Save',err);
    res.send(err);
    //reject(err)
-   })
+   })  
    
-   //res.send(model.Guardar(req,res,next));
 }
 
 exports.Buscar=
@@ -110,9 +109,17 @@ function(req, res, next)
 exports.Details=
 function(req, res, next)
 {
-	const doc = [{id:"1", description:"A" }];
-    console.log('con.Details',req.params);   
-    res.json(doc);
+	model.BuscarRq(req)
+   .then(function(doc)
+   {
+    console.log('con.Buscar');      
+    res.json(doc);    
+   })
+   .catch(function(err){
+   console.log('con.Buscar',err);
+   res.send(err);
+   //reject(err)
+   });
    
 }
 
@@ -130,6 +137,15 @@ function(req, res, next)
 {
 	const doc = [{id:"3", description:"C" }];
     console.log('con.Week',req.params);   
+    res.json(doc);
+   
+}
+
+exports.Activity=
+function(req, res, next)
+{
+	const doc = ({"id":"1", "what":"2","when":"3","where":"4","who":"5","cost":"6","priority":"7","state":"8","how":"9"});
+    console.log('con.Activity',req.params);   
     res.json(doc);
    
 }

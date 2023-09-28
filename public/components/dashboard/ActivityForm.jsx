@@ -1,5 +1,29 @@
-function ActivityForm({data,state,close})
+
+function ActivityForm({activity,setter,state,close,save})
 {  
+  
+  const [changed, setChanged] =  React.useState(false);	  
+  //const [activity, setActivity] =  React.useState(data);	  
+    
+  function handleChange(event)
+  {    
+	//setChanged( JSON.stringify(activity)===JSON.stringify(data));	
+	setter({...activity,[event.target.id]: event.target.value});    
+  }
+    
+  const handleSave = (data) => 
+  {  
+	save(data);
+  }
+    
+  const handleClose = (data) => 
+  {
+    //if (JSON.stringify(activity)===JSON.stringify(data))	
+	close(data);	
+  }
+  
+  //console.log('ActivityForm-act',activity);
+  
   return (
     <div><MaterialUI.Modal
         open={state}
@@ -14,29 +38,37 @@ function ActivityForm({data,state,close})
            <h4 className="">
            Manten tus Promesas</h4>
          </div>        
-         
+         {changed &&
+		 <div className="row">
+			<div className="col">
+			<MaterialUI.Alert severity="warning">
+				<MaterialUI.AlertTitle>Atención</MaterialUI.AlertTitle>				
+			</MaterialUI.Alert>
+			</div>
+		 </div>
+		 }
          <div className="row">
-         <div className="d-none">
-          <input id="txtId" className="hidden"></input>
+         <div className="">
+          <input value={activity.id} onChange={handleChange} id="id" type="text"></input>
          </div>
          </div>
          
          <div className="row">
           <div className="col-4 col-md-4">
            <label>Cuando</label>
-           <input id="txtCuando" type="text"
+           <input value={activity.when} onChange={handleChange} id="when" type="text"
             className="form-control">
            </input>
           </div>          
           <div className="col-4 col-md-4">
            <label>Cuanto</label>
-           <input id="txtCuanto" type="text"
+           <input value={activity.cost} onChange={handleChange} id="cost" type="text"
             className="form-control">
            </input>          
           </div>		  
 		  <div className="col-4 col-md-4">
            <label>Prioridad</label>
-           <input id="txtPrioridad" type="text"
+           <input value={activity.priority} onChange={handleChange} id="priority" type="text"
             className="form-control">
            </input>          
           </div>		  
@@ -45,7 +77,7 @@ function ActivityForm({data,state,close})
          <div className="row">
           <div className="col-12">
            <label>De que se trata</label>          
-           <textarea id="txtQue" rows="2"
+           <textarea value={activity.what} onChange={handleChange} id="what" rows="2"
            className="form-control"></textarea>
           </div>
          </div>	 
@@ -53,24 +85,24 @@ function ActivityForm({data,state,close})
          <div className="row">
        <div className="col-12">
            <label>Como</label>          
-           <textarea id="txtComo" rows="2"
+           <textarea value={activity.how} onChange={handleChange} id="how" rows="2"
            className="form-control"></textarea>
           </div>
 		 <div className="col-12">
            <label>Donde</label>          
-           <textarea id="txtDonde" rows="2"
+           <textarea value={activity.where} onChange={handleChange} id="where" rows="2"
            className="form-control"></textarea>
           </div>
 		  
 		  <div className="col-12">
            <label>Para Quien</label>          
-           <textarea id="txtQuien" rows="2"
+           <textarea value={activity.who} onChange={handleChange} id="who" rows="2"
            className="form-control"></textarea>
           </div>
 		  
 		  <div className="col-12">
            <label>Estado</label>          
-           <textarea id="txtEstado" rows="2"
+           <textarea value={activity.state} onChange={handleChange} id="state" rows="2"
            className="form-control"></textarea>
           </div>
       </div>           
@@ -78,14 +110,14 @@ function ActivityForm({data,state,close})
          
          <div className="row text-center">
 		 <div className="col">
-           <button  type="button" 
-            className="btn btn-default"
-            data-dismiss="modal"
-            >Cerrar
+            <button onClick={() => handleClose(activity)} 
+            id="btnCerrar" 
+            className="btn btn-primary">
+            Cerrar
            </button>
 		 </div>
 		 <div className="col">
-           <button type="button" 
+           <button onClick={() => handleSave(activity)} 
             id="btnGuardar" 
             className="btn btn-primary">
             Guardar

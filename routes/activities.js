@@ -12,8 +12,10 @@ router.get('/details', promesas.Details);
 router.get('/urgent', promesas.Urgent);
 router.get('/week', promesas.Week);
 
+router.get('/activity', promesas.Activity);
+
 router.get('/:Id', promesas.Traer);
 
 
-router.post('/', promesas.Guardar);
+router.post('/save', promesas.Save);
 module.exports = router

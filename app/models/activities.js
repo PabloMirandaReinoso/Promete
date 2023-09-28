@@ -37,7 +37,7 @@ function(req)
  )
 }
 
-exports.Guardar= function (req)
+exports.Save= function (req)
 {
  return new Promise
  (
@@ -47,15 +47,17 @@ exports.Guardar= function (req)
    //console.log('mod.Guardar');
    var prom = new Object();
  
-   prom.Que    =req.body.Que;
-   prom.Donde  =req.body.Donde;
-   prom.Cuando =req.body.Cuando;
-   prom.Quien  =req.body.Quien;
-   prom.Como   =req.body.Como;
-   prom.Id     =req.body.Id;
-   prom.Prioridad     =req.body.Prioridad;
+   prom.what    =req.body.what;
+   prom.where  =req.body.where;
+   prom.when =req.body.when;
+   prom.who =req.body.who;
+   prom.how   =req.body.how;
+   prom.id     =req.body.id;
+   prom.cost     =req.body.cost;
+   prom.state     =req.body.state;
+   prom.priority     =req.body.priority;   
    
-   dal.Guardar(prom)
+   dal.Save(prom)
    .then(function(doc){resolve(doc)})
    .catch(function(err){reject(err)})
    }

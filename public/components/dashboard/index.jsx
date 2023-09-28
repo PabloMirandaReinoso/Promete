@@ -1,11 +1,42 @@
-function loadData(url,loader)
+function saveActivity(data,setterActivity,setterModal)
+{
+	console.log('save',data);			   
+	
+	var url='http://localhost:4000/Activities/Save';
+	PostData(url,data)
+	 .then(
+		   (result)=>
+		   {			   
+		       console.log('save' , result);	
+			   setterActivity(result);			   
+			   //setterModal(true);
+		   });		   
+		
+}
+
+function loadActivity(data,setterActivity,setterModal)
+{
+	console.log('load',data);			   
+	
+	var url='http://localhost:4000/Activities/Activity';
+	GetData(url)
+	 .then(
+		   (data)=>
+		   {			   
+			   setterActivity(data);			   
+			   setterModal(true);
+		   });		   
+		
+}
+
+function loadData(url,setter)
 {
 	GetData(url)
 	 .then(
 		   (data)=>
 		   {
 			   console.log(data);
-			   loader(data);
+			   setter(data);
 		   });		   
 }
 
@@ -19,19 +50,31 @@ function Default()
 	const [urgent, setUrgent] =  React.useState([]);
 	const [week, setWeek] =  React.useState([]);
 	
-	const [activityform, setActivityForm] =  React.useState([]);	
+	console.log ('setter-init');
+	const [activityform, setActivityForm] =  React.useState(		  
+		  {"id":"", "what":"Que","when":"Cuando","where":"Donde","who":"Quien","cost":"0","priority":"0","state":"0","how":"Como"}
+		  );	
 	const [modalstate, setModalState] = React.useState(true);
     
-	const handleOpen = (id) => 
+	const handleOpen = (data) => 
 	{	
 		console.log ('modal-open');
-		setModalState(true);
+		loadActivity(data,setActivityForm,setModalState);
 	}
     
-	const handleClose = () =>
+	const handleClose = (data) =>
 	{	
-		console.log ('modal-close');
-		setModalState(false);
+		console.log ('modal-close');			
+		setModalState(false);		
+		
+	}
+	
+	const handleSave = (data) =>
+	{	
+		console.log ('modal-save');		
+		saveActivity(data,setActivityForm,setModalState);
+		setModalState(true);		
+		
 	}
 	
 	React.useEffect(() => 
@@ -48,7 +91,9 @@ function Default()
 		console.log (details,urgent,week,next,today,prev); 
 	
 	},[]);	
-	
+		
+//console.log ('render',activityform.id,activityform.what,activityform.when,activityform.where,activityform.who,activityform.cost,activityform.priority,activityform.state);
+
 return(	
 <div className="container-fluid">
 		<Navigator/>
@@ -115,7 +160,7 @@ return(
             </div>
         </div>		
 		<div className="row">
-		<ActivityForm data={activityform} state={modalstate} close={handleClose}/>
+		<ActivityForm activity={activityform} setter={setActivityForm} state={modalstate} close={handleClose} save={handleSave} />
 		</div>
 </div>
 );

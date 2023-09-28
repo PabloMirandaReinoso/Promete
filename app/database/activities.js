@@ -2,28 +2,40 @@ const Datastore = require('nedb-promises')
 let datastore = Datastore.create('promesas.db')
 
 
-module.exports.Agregar = function(P)
+module.exports.Insert = function(P)
 {
  return new Promise
  (
   function(resolve,reject)
   {
-   console.log('dal.Agregar');
+   console.log('dal.Insert');
    datastore.insert(P)
-  .then(function(doc){resolve(doc)})
+  .then(function(doc)
+	  {	
+		//This double call is because of nedb
+	    P.id =doc._id;			    
+		
+	    datastore.update({_id : doc._id},{ $set: { id: doc._id } },{ upsert: false })
+       .then(function(doc)
+        {
+        console.log('dal.Actualizar');
+        resolve(P)
+        });		
+
+	  })
   .catch(function(err){reject(err)})
   }
  )
 }
 
-module.exports.Actualizar = function(P)
+module.exports.Update = function(P)
 {
  return new Promise
  (
   function(resolve,reject)
   {
-   console.log('dal.Actualizar');
-   datastore.update({_id:P.Id},P,{})
+   console.log('dal.Update');
+   datastore.update({_id:P.id},P,{})
   .then(function(doc)
         {
         console.log('dal.Actualizar');

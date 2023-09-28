@@ -1,20 +1,21 @@
 var conn =require('../database/activities.js');
 
-exports.Guardar=
+exports.Save=
 function(prom)
 { return new Promise
  ( function (resolve,reject)
   {
   
-   if (prom.Id=='')
+   if (prom.id=='')
    {
-    conn.Agregar(prom)
+    conn.Insert(prom)
    .then(function(doc){resolve(doc)})
    .catch(function(err){reject(err)})
    }
    else
    {
-   conn.Actualizar(prom)
+	prom._id=prom.id;
+   conn.Update(prom)
    .then(function(doc){resolve(doc)})
    .catch(function(err){reject(err)})
    } 
