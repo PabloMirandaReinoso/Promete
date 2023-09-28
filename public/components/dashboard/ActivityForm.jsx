@@ -2,27 +2,24 @@
 function ActivityForm({activity,setter,state,close,save})
 {  
   
-  const [changed, setChanged] =  React.useState(false);	  
-  //const [activity, setActivity] =  React.useState(data);	  
-    
+  const [changed, setChanged] =  React.useState(false);	      
   function handleChange(event)
   {    
-	//setChanged( JSON.stringify(activity)===JSON.stringify(data));	
+	setChanged( true);	
 	setter({...activity,[event.target.id]: event.target.value});    
   }
     
   const handleSave = (data) => 
-  {  
+  { 
+    setChanged(false);  
 	save(data);
   }
     
   const handleClose = (data) => 
-  {
-    //if (JSON.stringify(activity)===JSON.stringify(data))	
+  {    
+    setChanged(false);  
 	close(data);	
   }
-  
-  //console.log('ActivityForm-act',activity);
   
   return (
     <div><MaterialUI.Modal
@@ -48,12 +45,12 @@ function ActivityForm({activity,setter,state,close,save})
 		 </div>
 		 }
          <div className="row">
-         <div className="">
+         <div className="d-none">
           <input value={activity.id} onChange={handleChange} id="id" type="text"></input>
          </div>
          </div>
          
-         <div className="row">
+         <div className="row g-1">
           <div className="col-4 col-md-4">
            <label>Cuando</label>
            <input value={activity.when} onChange={handleChange} id="when" type="text"

@@ -1,11 +1,8 @@
 var conn =require('../database/activities.js');
 
-exports.Save=
-function(prom)
-{ return new Promise
+exports.Save=function(prom){ return new Promise
  ( function (resolve,reject)
-  {
-  
+  {  
    if (prom.id=='')
    {
     conn.Insert(prom)
@@ -15,7 +12,7 @@ function(prom)
    else
    {
 	prom._id=prom.id;
-   conn.Update(prom)
+    conn.Update(prom)
    .then(function(doc){resolve(doc)})
    .catch(function(err){reject(err)})
    } 
@@ -23,30 +20,38 @@ function(prom)
  )
 }
 
-exports.Traer=
-function(P)
-{ return new Promise
+exports.Activity=function(P){ return new Promise
   (
    function (resolve,reject)
    {
-    console.log('per.Traer',P);
-    conn.Traer(P)
+    conn.Retrieve(P)
     .then(function(n){resolve(n);})
     .catch(function(err){reject(n);})
    }
   )
 }
 
-exports.BuscarRq=
-function(P)
-{ return new Promise
+exports.BuscarRq=function(P){ return new Promise
   (
    function (resolve,reject)
    {
-    conn.Buscar(P)
+    conn.Select(P)
     .then(function(n){resolve(n);})
     .catch(function(err){reject(err);})
    }
   )
 }
 
+exports.Today=function(P){ return new Promise
+  (
+   function (resolve,reject)
+   {
+    conn.Select(P)
+    .then(function(n)
+	{
+		resolve(n);
+	})
+    .catch(function(err){reject(err);})
+   }
+  )
+}
