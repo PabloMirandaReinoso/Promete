@@ -1,11 +1,2 @@
-{"what":"Llevar a la suegrita a su casa","where":"La Florida","when":"28/09/2023 16:00","who":"Suegrita","how":"En auto","id":"PkeOEqgmfI6jxbXc","cost":"6000","state":"0","priority":"0","_id":"PkeOEqgmfI6jxbXc"}
-{"what":"Llevar a la suegrita a su casa","where":"La Florida","when":"28/09/2023 16:00","who":"Suegrita","how":"En auto","id":"PkeOEqgmfI6jxbXc","cost":"6000","state":"Pendiente","priority":"0","_id":"PkeOEqgmfI6jxbXc"}
-{"what":"Que","where":"Donde","when":"Cuando","who":"Quien","how":"Como","id":"","cost":"0","state":"Pendiente","priority":"0","_id":"u29mbP9AcctYaAfG"}
-{"what":"Que","where":"Donde","when":"Cuando","who":"Quien","how":"Como","id":"u29mbP9AcctYaAfG","cost":"0","state":"Pendiente","priority":"0","_id":"u29mbP9AcctYaAfG"}
-{"what":"Iniciar cuidados madre","where":"Arcilla 951","when":"01/10/2023 18:00","who":"Diana Reinoso","how":"","id":"u29mbP9AcctYaAfG","cost":"10000","state":"Pendiente","priority":"0","_id":"u29mbP9AcctYaAfG"}
-{"what":"Iniciar cuidados madre","where":"Arcilla 951","when":"01/10/2023 18:00","who":"Diana Reinoso","how":"","id":"u29mbP9AcctYaAfG","cost":"11000","state":"Pendiente","priority":"0","_id":"u29mbP9AcctYaAfG"}
-{"what":"Iniciar cuidados madre en su casa","where":"Arcilla 951","when":"01/10/2023 18:00","who":"Diana Reinoso","how":"","id":"u29mbP9AcctYaAfG","cost":"11000","state":"Pendiente","priority":"0","_id":"u29mbP9AcctYaAfG"}
-{"what":"Iniciar cuidados madre","where":"Arcilla 951","when":"01/10/2023 18:00","who":"Diana Reinoso","how":"","id":"u29mbP9AcctYaAfG","cost":"11000","state":"Pendiente","priority":"0","_id":"u29mbP9AcctYaAfG"}
-{"what":"Iniciar cuidados madre en su casa","where":"Arcilla 951","when":"01/10/2023 18:00","who":"Diana Reinoso","how":"","id":"u29mbP9AcctYaAfG","cost":"11000","state":"Pendiente","priority":"0","_id":"u29mbP9AcctYaAfG"}
-{"what":"Iniciar cuidados madre ","where":"Arcilla 951","when":"01/10/2023 18:00","who":"Diana Reinoso","how":"","id":"u29mbP9AcctYaAfG","cost":"11000","state":"Pendiente","priority":"0","_id":"u29mbP9AcctYaAfG"}
-{"what":"Llevar a la suegrita a su casa, llevar aparatos","where":"La Florida","when":"28/09/2023 16:00","who":"Suegrita","how":"En auto","id":"PkeOEqgmfI6jxbXc","cost":"6000","state":"Pendiente","priority":"0","_id":"PkeOEqgmfI6jxbXc"}
+{"what":"Llevar a la suegrita a su casa, llevar aparatos","where":"La Florida","when":"28/09/2023","who":"Suegrita","how":"En auto","id":"PkeOEqgmfI6jxbXc","cost":"6000","state":"0","priority":"0","_id":"PkeOEqgmfI6jxbXc"}
+{"what":"Iniciar cuidados madre ","where":"Arcilla 951","when":"29/09/2023 18:00","who":"Diana Reinoso","how":"","id":"u29mbP9AcctYaAfG","cost":"11000","state":"0","priority":"0","_id":"u29mbP9AcctYaAfG"}

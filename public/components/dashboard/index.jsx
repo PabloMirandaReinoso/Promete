@@ -44,11 +44,11 @@ function loadData(url,setter)
 function Default()
 {	
 	const [next, setNext] =  React.useState({"date":"","total":""});
-	const [today, setToday] =  React.useState({"date":"","total":""});
+	const [actual, setActual] =  React.useState({"date":"","total":""});
 	const [prev, setPrev] =  React.useState({"date":"","total":""});
 	
-	const [details,setDetails] =  React.useState([]);
-	const [urgent, setUrgent] =  React.useState([]);
+	const [today,setToday] =  React.useState([]);
+	const [pending, setPending] =  React.useState([]);
 	const [week, setWeek] =  React.useState([]);
 	
 	console.log ('setter-init');
@@ -79,13 +79,13 @@ function Default()
 	
 	React.useEffect(() => 
 	{	 		
-			loadData('http://localhost:4000/Activities/Details',setDetails);
-			loadData('http://localhost:4000/Activities/Urgent',setUrgent);
+			loadData('http://localhost:4000/Activities/Actual',setActual);
+			loadData('http://localhost:4000/Activities/Pending',setPending);
 			loadData('http://localhost:4000/Activities/Week',setWeek);
 			
 			loadData('http://localhost:4000/Activities/Next',setNext);
 			loadData('http://localhost:4000/Activities/Today',setToday);
-			loadData('http://localhost:4000/Activities/Prev',setPrev);	
+			loadData('http://localhost:4000/Activities/Previous',setPrev);	
 		
 	},[modalstate]);	
 	
@@ -99,7 +99,7 @@ return(
                 <Activity label={'Anteriores'} date={prev.date} total={prev.total} />
             </div>
             <div className="col-lg-4 col-md-4 col-sm-4 col-4">			    
-                <Activity label={'Actuales'} date={today.date} total={today.total} />
+                <Activity label={'Actuales'} date={actual.date} total={actual.total} />
             </div>
             <div className="col-lg-4 col-md-4 col-sm-4 col-4">						
                 <Activity label={'Posteriores'} date={next.date} total={next.total} />
@@ -108,11 +108,11 @@ return(
 		
         <div className="row mt-2">
 		<div className="col-lg-12 col-md-12 col-sm-12 col-12">			    
-                <ActivityDetails label={'Hoy'} list={details} open={handleOpen}/>				
+                <ActivityDetails label={'Hoy'} list={actual} open={handleOpen}/>				
             </div>
 			
             <div className="col-lg-6 col-md-6 col-sm-6 col-12 mt-2">			
-                <ActivityDetails label={'Urgentes'} list={urgent} open={handleOpen}/>
+                <ActivityDetails label={'Pendientes'} list={pending} open={handleOpen}/>
             </div>            
 			
             <div className="col-lg-6 col-md-6 col-sm-6 col-12 mt-2">

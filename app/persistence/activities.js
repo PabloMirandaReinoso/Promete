@@ -1,5 +1,17 @@
+var util =require('../global/utils.js');
 var conn =require('../database/activities.js');
 
+
+exports.Load=function(P){ return new Promise
+  (
+   function (resolve,reject)
+   {
+    conn.Select(P)
+    .then(function(n){resolve(n);})
+    .catch(function(err){reject(err);})
+   }
+  )
+}
 exports.Save=function(prom){ return new Promise
  ( function (resolve,reject)
   {  
@@ -19,7 +31,6 @@ exports.Save=function(prom){ return new Promise
   }
  )
 }
-
 exports.Activity=function(P){ return new Promise
   (
    function (resolve,reject)
@@ -27,31 +38,6 @@ exports.Activity=function(P){ return new Promise
     conn.Retrieve(P)
     .then(function(n){resolve(n);})
     .catch(function(err){reject(n);})
-   }
-  )
-}
-
-exports.BuscarRq=function(P){ return new Promise
-  (
-   function (resolve,reject)
-   {
-    conn.Select(P)
-    .then(function(n){resolve(n);})
-    .catch(function(err){reject(err);})
-   }
-  )
-}
-
-exports.Today=function(P){ return new Promise
-  (
-   function (resolve,reject)
-   {
-    conn.Select(P)
-    .then(function(n)
-	{
-		resolve(n);
-	})
-    .catch(function(err){reject(err);})
    }
   )
 }

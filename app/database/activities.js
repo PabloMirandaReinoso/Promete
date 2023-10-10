@@ -38,7 +38,7 @@ module.exports.Update = function(P){ return new Promise (
          })
   })}
 
-module.exports.Select = function(P){return new Promise( 
+module.exports.Select = function(){return new Promise( 
 function (resolve,reject)
 {
 datastore.find({})
@@ -52,7 +52,7 @@ datastore.find({})
  }
  )
  .catch(function(err)
-  {console.log(F);reject(T);}
+  {console.log(F);reject(err);}
   );
  })}
 

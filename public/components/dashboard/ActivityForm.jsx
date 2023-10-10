@@ -51,24 +51,18 @@ function ActivityForm({activity,setter,state,close,save})
          </div>
          
          <div className="row g-1">
-          <div className="col-4 col-md-4">
+          <div className="col-6 col-md-6">
            <label>Cuando</label>
            <input value={activity.when} onChange={handleChange} id="when" type="text"
             className="form-control">
            </input>
           </div>          
-          <div className="col-4 col-md-4">
+          <div className="col-6 col-md-6">
            <label>Cuanto</label>
            <input value={activity.cost} onChange={handleChange} id="cost" type="text"
             className="form-control">
            </input>          
-          </div>		  
-		  <div className="col-4 col-md-4">
-           <label>Prioridad</label>
-           <input value={activity.priority} onChange={handleChange} id="priority" type="text"
-            className="form-control">
-           </input>          
-          </div>		  
+          </div>		  		  
          </div>
          
          <div className="row">
@@ -97,20 +91,33 @@ function ActivityForm({activity,setter,state,close,save})
            className="form-control"></textarea>
           </div>
 		  
-		  <div className="col-12">
-           <label>Estado</label>          
-           <textarea value={activity.state} onChange={handleChange} id="state" rows="2"
-           className="form-control"></textarea>
+		  <div className="row">
+		  <div className="col-6">
+		  <label>Estado</label>          
+		   <select id="state" defaultValue="0" value={activity.state} onChange={handleChange}>
+			<option value="0">Cerrado</option>
+			<option value="1">Abierto</option>
+			<option value="-1">Pendiente</option>        
+		   </select>
           </div>
-      </div>           
 		  
+		  <div className="col-6 col-md-6">
+           <label>Prioridad</label>           
+		   <select id="priority" defaultValue="0" value={activity.priority} onChange={handleChange}>
+			<option value="0">Normal</option>
+			<option value="1">Alta</option>
+			<option value="-1">Baja</option>        
+		   </select>
+          </div>		  
+		  </div>
+      </div>           		  
          
-         <div className="row text-center">
+         <div className="row mt-2 text-center mb-2">
 		 <div className="col">
             <button onClick={() => handleClose(activity)} 
             id="btnCerrar" 
             className="btn btn-primary">
-            Cerrar
+            Salir
            </button>
 		 </div>
 		 <div className="col">

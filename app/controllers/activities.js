@@ -1,19 +1,5 @@
 var model = require('../models/activities.js');
 
-exports.Traer=function(req, res, next)
-{
-   model.Traer(req)
-   .then(function(doc)
-   {
-    console.log('con.Traer',doc);
-    res.send(doc);  
-   })
-   .catch(function(err){
-   console.log('con.Err',err);
-   res.send(err);   
-   });
-}
-
 exports.Save=function(req, res, next)
 {   
    model.Save(req)
@@ -28,44 +14,35 @@ exports.Save=function(req, res, next)
    });     
 }
 
-exports.Buscar=function(req, res, next)
-{   
-   model.BuscarRq(req)
+exports.Actual=function(req, res, next)
+{
+	model.Actual(req)
    .then(function(doc)
-   {
-    console.log('con.Buscar');    
-    res.render('../views/promesas.ejs',{prom:doc});    
+   {    
+    res.json(doc);    
    })
    .catch(function(err){
    console.log('con.Buscar',err);
-   res.send(err);   
-   });
+   res.send(err);
+   });      
 }
 
-exports.Today=function(req, res, next)
+exports.Previous=function(req, res, next)
 {
-	const doc = {date:"10/09/2023", total:"66" };
-    console.log('con.Today',req.params);   
-    res.json(doc);   
-}
-
-exports.Prev=function(req, res, next)
-{
-	const doc = {date:"10/09/2023", total:"55" };
-    console.log('con.Today',req.params);   
-    res.json(doc);   
+	model.Previous(req)
+   .then(function(doc)
+   {    
+    res.json(doc);    
+   })
+   .catch(function(err){
+   console.log('con.Buscar',err);
+   res.send(err);
+   });    
 }
 
 exports.Next=function(req, res, next)
 {
-	const doc = {date:"10/11/2023", total:"77" };
-    console.log('con.Next',req.params);   
-    res.json(doc);   
-}
-
-exports.Details=function(req, res, next)
-{
-	model.BuscarRq(req)
+	model.Next(req)
    .then(function(doc)
    {    
     res.json(doc);    
@@ -76,18 +53,44 @@ exports.Details=function(req, res, next)
    });   
 }
 
-exports.Urgent=function(req, res, next)
+
+exports.Today=function(req, res, next)
 {
-	const doc = [{id:"2", description:"B" }];
-    console.log('con.Urgent',req.params);   
-    res.json(doc);   
+	model.Today(req)
+   .then(function(doc)
+   {    
+    res.json(doc);    
+   })
+   .catch(function(err){
+   console.log('con.Buscar',err);
+   res.send(err);
+   });   
+}
+
+exports.Pending=function(req, res, next)
+{
+	model.Pending(req)
+   .then(function(doc)
+   {    
+    res.json(doc);    
+   })
+   .catch(function(err){
+   console.log('con.Buscar',err);
+   res.send(err);
+   });   
 }
 
 exports.Week=function(req, res, next)
 {
-	const doc = [{id:"3", description:"C" }];
-    console.log('con.Week',req.params);   
-    res.json(doc);   
+	model.Week(req)
+   .then(function(doc)
+   {    
+    res.json(doc);    
+   })
+   .catch(function(err){
+   console.log('con.Buscar',err);
+   res.send(err);
+   });    
 }
 
 exports.Activity=function(req, res, next)
