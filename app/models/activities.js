@@ -50,12 +50,12 @@ exports.Actual=function(){ return new Promise
 		docs.forEach
 		(function(p)
 		{			
-		  if (util.ToDate(p.when).getTime()===hoy.getTime())
+		  if (util.ToDate(p.when)>util.AddDays(hoy,-7) && util.ToDate(p.when)<util.AddDays(hoy,7)) 
 		  {
 			c++;
 		  }
 		});
-		console.log('dal.Today ' + Date.now() );
+		console.log('Model.Actual ' + Date.now() );
 		T.date=util.toStringShort(hoy);
 	    T.total=c;
 		resolve(T);
@@ -78,15 +78,15 @@ exports.Next=function(){ return new Promise
 		docs.forEach
 		(function(p)
 		{			
-		  if (util.ToDate(p.when).getDate()>hoy.getDate()+7)
+		  if (util.ToDate(p.when)>util.AddDays(hoy,7))
 		  {
 			c++;
 		  }
 		});
-		console.log('dal.Today ' + Date.now() );
+		console.log('Model.Next ' + Date.now() );
 		
-		hoy.setDate(hoy.getDate()+7)
-		T.date=util.toStringShort(hoy.getDate());
+		hoy=util.AddDays(hoy,7);
+		T.date=util.toStringShort(hoy);
 	    T.total=c;
 		resolve(T);
 	})
@@ -94,6 +94,7 @@ exports.Next=function(){ return new Promise
    }
   )
 }
+
 exports.Previous=function(){ return new Promise
   (
    function (resolve,reject)
@@ -101,23 +102,22 @@ exports.Previous=function(){ return new Promise
     dal.Load()
     .then(function(docs)
 	{
-		var days=0;
+		var day=0;
 		var c=0;
-		var hoy=util.ToDay();
+		var hoy=util.ToDay();		
 		var T = {"date":hoy,"total":0};
 		docs.forEach
 		(function(p)
 		{			
-		  days=util.ToDate(p.when).getTime()-hoy.getTime();
-		  console.log('days');
-		  console.log(days/1000/60/60/24);
-		  if ( days > -7 && days < 0 )
+		  day=util.ToDate(p.when);
+		  
+		  if ( (day > util.AddDays(hoy, -7))  && (day < hoy ) )
 		  {
 			c++;
 		  }
 		});
-		console.log('dal.Today ' + Date.now() );
-		T.date=util.toStringShort(hoy.getTime()-7);
+		console.log('Model.Previous ' + Date.now() );
+		T.date=util.toStringShort(util.AddDays(hoy, -7));
 	    T.total=c;
 		resolve(T);
 	})
@@ -135,16 +135,18 @@ exports.Today=function(){ return new Promise
     .then(function(docs)
 	{		
 		var hoy=util.ToDay();
-		var T = [{"id":"","what":""}];
+		console.log('hoy',hoy);
+		var T = [];
 		docs.forEach
 		(function(p)
-		{			
-		  if ( (util.ToDate(p.when).getTime()===hoy.getTime()) && p.state==='0')
+		{	
+		  console.log(util.ToDate(p.when));		
+		  if ( (util.toStringShort(util.ToDate(p.when))==util.toStringShort(hoy)) )
 		  {
 			T.push(p);
 		  }
 		});
-		console.log('dal.Today ' + Date.now() );		
+		console.log('Model.Today ' + Date.now() );		
 		resolve(T);
 	})
     .catch(function(err){reject(err);})
@@ -160,16 +162,16 @@ exports.Pending=function(){ return new Promise
     .then(function(docs)
 	{		
 		var hoy=util.ToDay();
-		var T = [{"id":"","what":""}];
+		var T = [];
 		docs.forEach
 		(function(p)
 		{			
-		  if ( (util.ToDate(p.when).getTime()<hoy.getTime()) && p.state==='-1')
+		  if ( p.state=='-1')
 		  {
 			T.push(p);
 		  }
 		});
-		console.log('dal.Pending' + Date.now() );		
+		console.log('Model.Pending' + Date.now() );		
 		resolve(T);
 	})
     .catch(function(err){reject(err);})
@@ -185,16 +187,16 @@ exports.Week=function(){ return new Promise
     .then(function(docs)
 	{		
 		var hoy=util.ToDay();
-		var T = [{"id":"","what":""}];
+		var T = [];
 		docs.forEach
 		(function(p)
 		{			
-		  if ( (util.ToDate(p.when).getTime()>hoy.getTime()) && p.state==='0')
+		  if (util.ToDate(p.when)>util.AddDays(hoy,-7) && util.ToDate(p.when)<util.AddDays(hoy,7)) 
 		  {
 			T.push(p);
 		  }
 		});
-		console.log('dal.Week ' + Date.now() );		
+		console.log('Model.Week ' + Date.now() );		
 		resolve(T);
 	})
     .catch(function(err){reject(err);})

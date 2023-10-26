@@ -1,9 +1,7 @@
 module.exports.toStringShort=function(dato)
 {
  var retorno=null; 
- var dia='01';var mes='01';var ano='1900';
- console.log('toStringShort',dato);
- //console.log(dato);
+ var dia='01';var mes='01';var ano='1900'; 
  
 	try {		
 			dia   = (dato.getDate()).toString().padStart(2,'0');
@@ -26,8 +24,7 @@ module.exports.toStringShort=function(dato)
 module.exports.ToDate=function(dato)
 {
  var retorno=null;
- console.log('ToDate',dato);
- //console.log(dato);
+ 
  
  if (dato!==undefined)
  {
@@ -41,7 +38,7 @@ module.exports.ToDate=function(dato)
  {
 	 retorno = new Date(1 , 0 , 1 )
  }
- 
+ console.log('ToDate',retorno); 
  return retorno;
 }
 
@@ -52,6 +49,14 @@ module.exports.ToDay=function ()
    var dia   = fecha.getDate();
    var mes   = fecha.getMonth(); 
    var ano   = fecha.getFullYear();
-   
+      
    return new Date(ano,mes,dia);
+}
+
+module.exports.AddDays=function (fecha,dias)
+{
+   var Temp = new Date();	
+   Temp.setDate(fecha.getDate() + dias);
+   
+   return Temp;
 }

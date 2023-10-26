@@ -17,7 +17,7 @@ function saveActivity(data,setterActivity,setterModal)
 function loadActivity(id,setterActivity,setterModal)
 {	
 	
-	var url='http://localhost:4000/Activities/Activity/'+ id;	
+	var url='http://localhost:4000/Activities/Activity/'+ id ;	
 	console.log('url',url);			   
 	
 	GetData(url)
@@ -40,6 +40,10 @@ function loadData(url,setter)
 			   setter(data);
 		   });		   
 }
+function activityDefault()
+{
+ return {"id":"", "what":"","when":"","where":"","who":"","cost":"0","priority":"0","state":"1","how":""}
+}
 
 function Default()
 {	
@@ -52,9 +56,7 @@ function Default()
 	const [week, setWeek] =  React.useState([]);
 	
 	console.log ('setter-init');
-	const [activityform, setActivityForm] =  React.useState(		  
-		  {"id":"", "what":"Que","when":"Cuando","where":"Donde","who":"Quien","cost":"0","priority":"0","state":"0","how":"Como"}
-		  );	
+	const [activityform, setActivityForm] =  React.useState(activityDefault);	
 	const [modalstate, setModalState] = React.useState(false);
     
 	const handleOpen = (data) => 
@@ -76,6 +78,12 @@ function Default()
 		setModalState(true);	        
 	}
 	
+	const handleAdd = (data) => 
+	{	
+		console.log ('modal-add');
+		setActivityForm(activityDefault);
+		setModalState(true);				
+	}
 	
 	React.useEffect(() => 
 	{	 		
@@ -94,7 +102,10 @@ function Default()
 return(	
 <div className="container-fluid">
 		<Navigator/>
-        <div className="row g-1">
+        <div className="row g-0">
+			<div className="row g-0">
+				<div className="col card-bgc text-center"><h4 class="card-title mt-2">Actividades</h4></div>			
+			</div>
             <div className="col-lg-4 col-md-4 col-sm-4 col-4">			
                 <Activity label={'Anteriores'} date={prev.date} total={prev.total} />
             </div>
@@ -103,12 +114,14 @@ return(
             </div>
             <div className="col-lg-4 col-md-4 col-sm-4 col-4">						
                 <Activity label={'Posteriores'} date={next.date} total={next.total} />
-            </div>
-        </div>
-		
+            </div>			
+        </div>		
+		<div className="row g-1">
+			<ActivityActions label={'Agregar'} open={handleAdd}/>		
+		</div>
         <div className="row mt-2">
 		<div className="col-lg-12 col-md-12 col-sm-12 col-12">			    
-                <ActivityDetails label={'Hoy'} list={actual} open={handleOpen}/>				
+                <ActivityDetails label={'Hoy'} list={today} open={handleOpen}/>				
             </div>
 			
             <div className="col-lg-6 col-md-6 col-sm-6 col-12 mt-2">			

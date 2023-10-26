@@ -47,7 +47,7 @@ datastore.find({})
   var T = Array();
   docs.forEach
   (function(p){T.push(p);});
-  console.log('dal.Buscar ' + Date.now() );
+  console.log('dal.Buscar ');
   resolve(T);
  }
  )

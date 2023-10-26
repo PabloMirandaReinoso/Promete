@@ -22,7 +22,7 @@ exports.Actual=function(req, res, next)
     res.json(doc);    
    })
    .catch(function(err){
-   console.log('con.Buscar',err);
+   console.log('con.Actual',err);
    res.send(err);
    });      
 }
@@ -35,7 +35,7 @@ exports.Previous=function(req, res, next)
     res.json(doc);    
    })
    .catch(function(err){
-   console.log('con.Buscar',err);
+   console.log('con.Previous',err);
    res.send(err);
    });    
 }
@@ -48,7 +48,7 @@ exports.Next=function(req, res, next)
     res.json(doc);    
    })
    .catch(function(err){
-   console.log('con.Buscar',err);
+   console.log('con.Next',err);
    res.send(err);
    });   
 }
@@ -62,7 +62,7 @@ exports.Today=function(req, res, next)
     res.json(doc);    
    })
    .catch(function(err){
-   console.log('con.Buscar',err);
+   console.log('con.Today',err);
    res.send(err);
    });   
 }
@@ -75,7 +75,7 @@ exports.Pending=function(req, res, next)
     res.json(doc);    
    })
    .catch(function(err){
-   console.log('con.Buscar',err);
+   console.log('con.Pending',err);
    res.send(err);
    });   
 }
@@ -88,7 +88,7 @@ exports.Week=function(req, res, next)
     res.json(doc);    
    })
    .catch(function(err){
-   console.log('con.Buscar',err);
+   console.log('con.Week',err);
    res.send(err);
    });    
 }
@@ -102,7 +102,7 @@ exports.Activity=function(req, res, next)
     res.json(doc);    
    })
    .catch(function(err){
-   console.log('con.Err',err);
+   console.log('con.Activity',err);
    res.send(err);
    });
    
