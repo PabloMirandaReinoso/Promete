@@ -2,7 +2,7 @@ function saveActivity(data,setterActivity,setterModal)
 {
 	console.log('save',data);			   
 	
-	var url='http://localhost:4000/Activities/Save';
+	var url='/Activities/Save';
 	PostData(url,data)
 	 .then(
 		   (result)=>
@@ -17,7 +17,7 @@ function saveActivity(data,setterActivity,setterModal)
 function loadActivity(id,setterActivity,setterModal)
 {	
 	
-	var url='http://localhost:4000/Activities/Activity/'+ id ;	
+	var url='/Activities/Activity/'+ id ;	
 	console.log('url',url);			   
 	
 	GetData(url)
@@ -87,13 +87,13 @@ function Default()
 	
 	React.useEffect(() => 
 	{	 		
-			loadData('http://localhost:4000/Activities/Actual',setActual);
-			loadData('http://localhost:4000/Activities/Pending',setPending);
-			loadData('http://localhost:4000/Activities/Week',setWeek);
+			loadData('/Activities/Actual',setActual);
+			loadData('/Activities/Pending',setPending);
+			loadData('/Activities/Week',setWeek);
 			
-			loadData('http://localhost:4000/Activities/Next',setNext);
-			loadData('http://localhost:4000/Activities/Today',setToday);
-			loadData('http://localhost:4000/Activities/Previous',setPrev);	
+			loadData('/Activities/Next',setNext);
+			loadData('/Activities/Today',setToday);
+			loadData('/Activities/Previous',setPrev);	
 		
 	},[modalstate]);	
 	

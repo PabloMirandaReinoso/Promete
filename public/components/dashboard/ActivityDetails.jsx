@@ -12,21 +12,20 @@ return(
         <h5 className="card-title mt-2">{label} </h5>
 	</div>
     <div className="card-body">
-        <ul className="list-group list-group-flush">			
+        <div className="row list-group list-group-flush">			
 			{Array.isArray(list) ? 
 			list.map
 			(
 			 (item, index) =>
 			 ( 
-				<li className="list-group-item" key={item.id} data-id={item.id} onClick={() => handleOpen(item.id)} >      
-				<p><b>{item.what}</b></p>
-				<span className="badge badge-primary badge-pill">2</span>
-				</li>
+				<div className="col list-group-item" key={item.id} data-id={item.id} onClick={() => handleOpen(item.id)} >      
+				<p><b>{item.what}</b></p>				
+				</div>
 			 
 			 )
 			)
 			: null}
-        </ul>
+        </div>
     </div>
 </div>
 );					
