@@ -7,7 +7,7 @@ var express = require('express');
 var app       = express();
 var constants = require('constants');
 var morgan       = require('morgan');
-var cookieParser = require('cookie-parser');
+//var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var serveIndex = require('serve-index');
 var now = new Date();
@@ -15,7 +15,14 @@ var now = new Date();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(morgan('dev')); 
-app.use(cookieParser()); 
+//app.use(cookieParser()); 
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
 
 //view engine setup
 app.use(express.static(path.join(__dirname, 'public')));	

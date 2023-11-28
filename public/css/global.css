@@ -43,3 +43,7 @@
 	border-width:1px;
 	border-style:ridge;
 }
+
+h4 , h3 ,h5 ,h6 {
+	color:indigo!important;
+}

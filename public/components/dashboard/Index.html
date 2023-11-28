@@ -1,23 +1,12 @@
 <div id="root"></div> <!--This is a react root node-->
 <script src="components/services/fetch.js" type="text/babel"></script>
+<script src="components/session/SessionForm.jsx" type="text/babel"></script>
 <script src="components/dashboard/Activity.jsx" type="text/babel"></script>
 <script src="components/dashboard/ActivityDetails.jsx" type="text/babel"></script>
 <script src="components/dashboard/Ideas.jsx" type="text/babel"></script>
+<script src="components/dashboard/IdeasActions.jsx" type="text/babel"></script>
+<script src="components/dashboard/IdeaForm.jsx" type="text/babel"></script>
 <script src="components/dashboard/Navigator.jsx" type="text/babel"></script>
 <script src="components/dashboard/ActivityForm.jsx" type="text/babel"></script>
 <script src="components/dashboard/ActivityActions.jsx" type="text/babel"></script>
 <script src="components/dashboard/index.jsx" type="text/babel"></script>
-
-<script>
-import Activity from 'components/dashboard/Activity.jsx';
-import ActivityDetails from 'components/dashboard/ActivityDetails.jsx';
-import Ideas from 'components/dashboard/Ideas.jsx';
-import ActivityActions from 'components/dashboard/ActivityActions.jsx';
-import Navigator from 'components/dashboard/Navigator.jsx';
-import Index from 'components/dashboard/index.jsx';
-import Fetch from 'components/services/fetch.jsx';
-
-const domNode = document.getElementById("root");
-const root = ReactDOM.createRoot(domNode);
-root.render(<Index/>);
-</script>
