@@ -46,12 +46,13 @@ exports.Actual=function(){ return new Promise
 	{
 		var c=0;
 		var hoy=util.ToDay();
-		var T = {"date":hoy,"total":0};
+		var T = {"date":hoy,"total":0,"activities":[]};
 		docs.forEach
 		(function(p)
 		{			
 		  if (util.ToDate(p.when)>util.AddDays(hoy,-7) && util.ToDate(p.when)<util.AddDays(hoy,7)) 
 		  {
+			T.activities.push(p);
 			c++;
 		  }
 		});
@@ -74,12 +75,13 @@ exports.Next=function(){ return new Promise
 	{
 		var c=0;
 		var hoy=util.ToDay();
-		var T = {"date":hoy,"total":0};
+		var T = {"date":hoy,"total":0,"activities":[]};
 		docs.forEach
 		(function(p)
 		{			
 		  if (util.ToDate(p.when)>util.AddDays(hoy,7))
 		  {
+			T.activities.push(p);			  
 			c++;
 		  }
 		});
@@ -105,7 +107,7 @@ exports.Previous=function(){ return new Promise
 		var day=0;
 		var c=0;
 		var hoy=util.ToDay();		
-		var T = {"date":hoy,"total":0};
+		var T = {"date":hoy,"total":0,activities:[]};
 		docs.forEach
 		(function(p)
 		{			
@@ -113,6 +115,7 @@ exports.Previous=function(){ return new Promise
 		  
 		  if ( (day > util.AddDays(hoy, -7))  && (day < hoy ) )
 		  {
+			T.activities.push(p);			  
 			c++;
 		  }
 		});
@@ -195,6 +198,42 @@ exports.Week=function(){ return new Promise
 		  {
 			T.push(p);
 		  }
+		});
+		console.log('Model.Week ' + Date.now() );		
+		resolve(T);
+	})
+    .catch(function(err){reject(err);})
+   }
+  )
+}
+
+exports.Search=function(req){ return new Promise
+  (
+   function (resolve,reject)
+   {
+	   
+   var prom = new Object();
+ 
+   prom.what     =req.body.what;
+   prom.where    =req.body.where;
+   prom.when     =req.body.when;
+   prom.who      =req.body.who;
+   prom.how      =req.body.how;
+   prom.id       =req.body.id;
+   prom.cost     =req.body.cost;
+   prom.state    =req.body.state;
+   prom.priority =req.body.priority;
+   
+    dal.Load()
+    .then(function(docs)
+	{	
+		
+		var T = [];
+		docs.forEach
+		(function(p)
+		{					  
+			T.push(p);
+
 		});
 		console.log('Model.Week ' + Date.now() );		
 		resolve(T);

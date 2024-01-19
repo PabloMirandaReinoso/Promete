@@ -1,4 +1,4 @@
-function Activity({label,date,total})
+function Activity({label,date,total,activities,opener})
 {
 return(
 <div className="card">
@@ -7,7 +7,7 @@ return(
 	</div>
     <div className="pb-2 text-center">
         <div className="col"><span>{label}</span></div>
-			<button className="btn btn-warning btn-xs float-right btn-redondo" type="button">{total}
+			<button className="btn btn-warning btn-xs float-right btn-redondo" type="button" onClick={() => opener(activities)} >{total}
 			</button>
 		</div>
     </div>

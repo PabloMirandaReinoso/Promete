@@ -1,3 +1,8 @@
+function handleRuntime(err) {
+  console.log('Oh noooo!');
+  console.log(err);
+}
+
 function saveActivity(data,setterActivity,setterModal)
 {
 	console.log('save',data);			   
@@ -10,7 +15,8 @@ function saveActivity(data,setterActivity,setterModal)
 		       console.log('save' , result);	
 			   setterActivity(result);			   
 			   
-		   });		   
+		   })
+	.catch(handleRuntime);		   
 		
 }
 
@@ -26,7 +32,8 @@ function loadActivity(id,setterActivity,setterModal)
 		   {			   
 			   setterActivity(data);			   
 			   setterModal(true);
-		   });		   
+		   })
+	.catch(handleRuntime);
 		
 }
 
@@ -43,7 +50,7 @@ function loadIdea(id,setterIdea,setterModal)
 			   setterIdea(data);			   
 			   setterModal(true);
 		   })
-	.catch(err => console.log(err));		   
+	.catch(handleRuntime);
 		
 }
 
@@ -56,7 +63,24 @@ function loadData(url,setter)
 			   console.log(data);
 			   setter(data);
 		   })
-    .catch(err => console.log(err));		   
+    .catch(handleRuntime);
+}
+
+function loadSearch(setterActivity,setterModal)
+{	
+	
+	var url='/Activities/Search';	
+	console.log('url',url);			   
+	
+	PostData(url,activityDefault())
+	 .then(
+		   (data)=>
+		   {			   
+			   setterActivity(data);			   
+			   setterModal(true);
+		   })
+	.catch(handleRuntime);		   
+		
 }
 
 function activityDefault()
@@ -81,15 +105,16 @@ function saveIdea(data,setterIdea,setterModal)
 		       console.log('save' , result);	
 			   setterIdea(result);			   
 			   
-		   });		   
+		   })
+	.catch(handleRuntime);		   
 		
 }
 
 function Default()
 {	
-	const [next, setNext] =  React.useState({"date":"","total":""});
-	const [actual, setActual] =  React.useState({"date":"","total":""});
-	const [prev, setPrev] =  React.useState({"date":"","total":""});
+	const [next, setNext] =  React.useState({"date":"","total":"","activities":[]});
+	const [actual, setActual] =  React.useState({"date":"","total":"","activities":[]});
+	const [prev, setPrev] =  React.useState({"date":"","total":"","activities":[]});
 	
 	const [today,setToday] =  React.useState([]);
 	const [pending, setPending] =  React.useState([]);
@@ -123,6 +148,19 @@ function Default()
 		setModalActivityState(true);				
 	}
 	
+	const handleSearchActivity = () => 
+	{	
+		
+		loadSearch(setActivitySearch,setModalSearchState);
+		
+	}
+	
+	const handleCloseSearch = () =>
+	{	
+		console.log ('modal-close');			
+		setModalSearchState(false);				
+	}
+	
 	const handleAddIdea = (data) => 
 	{	
 		console.log ('modal-idea');
@@ -152,13 +190,17 @@ function Default()
 	
 	/*Session*/
 	const [activityform, setActivityForm] =  React.useState(activityDefault);	
+	
 	const [modalactivitystate, setModalActivityState] = React.useState(false);    
 	const [modalideastate, setModalIdeaState] = React.useState(false);    
+	const [modalsearchstate, setModalSearchState] = React.useState(false);    
 	
 	const [sessionstate, setSessionState] = React.useState(true);	
 	const [sessionform, setSessionForm] =  React.useState({"user":"","id":""});
+	
 	const [ideaform, setIdeaForm] =  React.useState(ideaDefault);
 	const [ideas, setIdeas] =  React.useState([ideaDefault]);
+	const [activitysearch, setActivitySearch] =  React.useState([activityDefault]);
 	
 	const handleForgotten = (data) =>
 	{	
@@ -168,6 +210,13 @@ function Default()
 	const handleValidate = (data) => 
 	{	
 		console.log ('session-validate');		
+	}	
+
+	const handleActivities = (data) => 
+	{	
+		console.log ('activities');		
+		setActivitySearch(data.activities);
+		setModalSearchState(true);
 	}	
 	
 	React.useEffect(() => 
@@ -194,17 +243,17 @@ return(
 				<div className="col card-bgc text-center"><h4 className="card-title mt-2">Actividades</h4></div>			
 			</div>
             <div className="col-lg-4 col-md-4 col-sm-4 col-4">			
-                <Activity label={'Anteriores'} date={prev.date} total={prev.total} />
+                <Activity label={'Anteriores'} date={prev.date} total={prev.total}  activities={prev}  opener={handleActivities}  />
             </div>
             <div className="col-lg-4 col-md-4 col-sm-4 col-4">			    
-                <Activity label={'Actuales'} date={actual.date} total={actual.total} />
+                <Activity label={'Actuales'} date={actual.date} total={actual.total} activities={actual}  opener={handleActivities}  />
             </div>
             <div className="col-lg-4 col-md-4 col-sm-4 col-4">						
-                <Activity label={'Posteriores'} date={next.date} total={next.total} />
+                <Activity label={'Posteriores'} date={next.date} total={next.total} activities={next}  opener={handleActivities}  />
             </div>			
         </div>		
 		<div className="row g-1">
-			<ActivityActions label={'Agregar'} open={handleAddActivity}/>		
+			<ActivityActions label={'Agregar'} open={handleAddActivity} search={handleSearchActivity}/>		
 		</div>
         <div className="row mt-2">
 		<div className="col-lg-12 col-md-12 col-sm-12 col-12">			    
@@ -220,7 +269,7 @@ return(
             </div>			
             
         </div>
-		<div className="row">
+		<div className="row mt-2">
 			<div className="col">
                 <Ideas label="Ideas" list={ideas} opener={handleOpenIdea}/>
             </div>
@@ -232,6 +281,7 @@ return(
 		<div className="row">
 		<ActivityForm activity={activityform} setter={setActivityForm} state={modalactivitystate} close={handleCloseActivity} save={handleSaveActivity} />
 		<IdeaForm idea={ideaform} setter={setIdeaForm} state={modalideastate} close={handleCloseIdea} save={handleSaveIdea} />
+		<ActivitySearch label={'Busqueda'} list={activitysearch} state={modalsearchstate} open={handleOpenActivity} close={handleCloseSearch} />-->
 		</div>
 		
 		

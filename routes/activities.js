@@ -12,4 +12,6 @@ router.get('/week', promesas.Week);
 
 router.get('/activity/:id', promesas.Activity);
 router.post('/save', promesas.Save);
+router.post('/search', promesas.Search);
+
 module.exports = router

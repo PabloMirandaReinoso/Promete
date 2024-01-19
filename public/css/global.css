@@ -1,3 +1,9 @@
+.item-search
+{
+	border-style: outset;
+  border-width: 0px 0px 1px 0px;
+}  
+
 .MUI-Modal {
   position: absolute;
   margin-top: 20%;
@@ -6,7 +12,12 @@
   background-color : white;
   border: 2px solid #000;    
 }
-
+.container-modal
+{
+	height:600px;
+	overflow-y:scroll;
+	overflow-x:hidden;
+}
 .card-bgc
 {
 	background-color : deepskyblue;
@@ -22,6 +33,23 @@
     -moz-user-select: none;
     user-select: none;        
     background-color: steelblue;
+    color: white;
+    border-radius: 25px 25px 25px 25px;
+    cursor: pointer
+	border-width:thin;
+	text-shadow: 0px 1px 0px, 0 0 0px slategray, 0 0 0px;
+}
+
+.button-close
+{
+	display: inline-block;
+    margin: 1px 2px 1px 2px;    
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;    
+    -moz-user-select: none;
+    user-select: none;        
+    background-color: maroon;
     color: white;
     border-radius: 25px 25px 25px 25px;
     cursor: pointer

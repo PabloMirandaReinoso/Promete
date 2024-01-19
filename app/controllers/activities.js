@@ -107,3 +107,16 @@ exports.Activity=function(req, res, next)
    });
    
 }
+
+exports.Search=function(req, res, next)
+{
+	model.Search(req)
+   .then(function(doc)
+   {    
+    res.json(doc);    
+   })
+   .catch(function(err){
+   console.log('con.Week',err);
+   res.send(err);
+   });    
+}

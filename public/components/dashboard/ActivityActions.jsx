@@ -1,4 +1,4 @@
-function ActivityActions({label,open})
+function ActivityActions({label,open,search})
 {
    const handleOpen = () => 
   { 
@@ -7,7 +7,7 @@ function ActivityActions({label,open})
   
   const handleBuscar = () => 
   { 
-	open();	
+	search();	
   }
 return ( <div className="Buttons mt-3">
             <div className="row text-center">                                                

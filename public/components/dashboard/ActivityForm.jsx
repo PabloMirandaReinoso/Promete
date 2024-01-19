@@ -32,8 +32,16 @@ function ActivityForm({activity,setter,state,close,save})
               
       <div className="container">
          <div className="row text-center card-bgc">
-           <h4 className="">
-           Manten tus Promesas</h4>
+			<div className="col-10">
+				<h4 className="">Manten tus Promesas</h4>
+		    </div>
+		    <div className="col-2">
+				<button onClick={() => handleClose(activity)} 
+            id="btnCierre"
+            className="button-close">
+            X
+           </button>
+		    </div>
          </div>        
          {changed &&
 		 <div className="row">
@@ -53,9 +61,9 @@ function ActivityForm({activity,setter,state,close,save})
          <div className="row g-1">
           <div className="col-6 col-md-6">
            <h5>Cuando</h5>
-           <input value={activity.when} onChange={handleChange} id="when" type="text"
+           <input value={activity.when} onChange={handleChange} id="when" type="date"
             className="input-form">
-           </input>
+           </input>           
           </div>          
           <div className="col-6 col-md-6">
            <h5>Cuanto</h5>
@@ -113,13 +121,7 @@ function ActivityForm({activity,setter,state,close,save})
       </div>           		  
          
          <div className="row mt-2 text-center mb-2">
-		 <div className="col">
-            <button onClick={() => handleClose(activity)} 
-            id="btnCerrar" 
-            className="button-normal">
-            Salir
-           </button>
-		 </div>
+		
 		 <div className="col">
            <button onClick={() => handleSave(activity)} 
             id="btnGuardar" 
