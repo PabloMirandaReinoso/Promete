@@ -1,8 +1,5 @@
-const Datastore = require('nedb-promises')
-let datastore = Datastore.create('ideas.db')
-
 //ONLY CRUD 
-module.exports.Insert = function(P){ return new Promise (
+module.exports.Insert = function(P,datastore){ return new Promise (
   function(resolve,reject)
   {
    console.log('dal.Insert');
@@ -21,7 +18,7 @@ module.exports.Insert = function(P){ return new Promise (
   .catch(function(err){reject(err)})
   })}
 
-module.exports.Update = function(P){ return new Promise (
+module.exports.Update = function(P,datastore){ return new Promise (
   function(resolve,reject)
   {
    console.log('dal.Update');
@@ -38,7 +35,7 @@ module.exports.Update = function(P){ return new Promise (
          })
   })}
 
-module.exports.Select = function(){return new Promise( 
+module.exports.Select = function(datastore){return new Promise( 
 function (resolve,reject)
 {
 datastore.find({})
@@ -56,7 +53,7 @@ datastore.find({})
   );
  })}
 
-module.exports.Retrieve = function(P){return new Promise(
+module.exports.Retrieve = function(P,datastore){return new Promise(
 function (resolve,reject)
 {
   console.log('dal.Traer ',P);

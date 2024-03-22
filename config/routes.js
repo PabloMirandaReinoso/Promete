@@ -1,6 +1,6 @@
 var express  = require('express');
 var router   = express.Router();
-var home     = require('../routes/home.js');
+var home     = require('../routes/site.js');
 var acti     = require('../routes/activities.js');
 var ideas     = require('../routes/ideas.js');
 

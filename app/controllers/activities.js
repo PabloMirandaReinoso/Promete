@@ -1,5 +1,20 @@
 var model = require('../models/activities.js');
 
+exports.Auth=function(req, res, next)
+{   
+console.log("Auth",next.name);
+
+if (req.session.logon) 
+	{  
+		next()
+	}
+	else
+	{
+		return res.status(403).send(null);		
+	}
+
+
+}
 exports.Save=function(req, res, next)
 {   
    model.Save(req)

@@ -1,7 +1,3 @@
-const isWindowContext = typeof window !== "undefined";
-
-
-
 
 function SessionForm({session,setter,state,validate,forgotten})
 {  
@@ -26,7 +22,7 @@ function SessionForm({session,setter,state,validate,forgotten})
   }
   
 
-  const search = isWindowContext && window.location.href;  
+  const search = 'dd';  
   return (
     <div><MaterialUI.Modal
         open={state}

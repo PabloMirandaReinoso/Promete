@@ -61,8 +61,8 @@ function ActivityForm({activity,setter,state,close,save})
          <div className="row g-1">
           <div className="col-6 col-md-6">
            <h5>Cuando</h5>
-           <input value={activity.when} onChange={handleChange} id="when" type="date"
-            className="input-form">
+           <input value={activity.when} onChange={handleChange} id="when" 
+            className="input-form" >
            </input>           
           </div>          
           <div className="col-6 col-md-6">
